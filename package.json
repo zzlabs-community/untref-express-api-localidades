@@ -1,0 +1,14 @@
+{
+  "name": "untref-api-localidades",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TP de Express: API REST de localidades de la Provincia de Buenos Aires",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
