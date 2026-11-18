@@ -1,0 +1,20 @@
+### Documentación de la API
+GET http://localhost:3000/
+
+### Todas las localidades
+GET http://localhost:3000/localidades
+
+### Localidad por ID existente
+GET http://localhost:3000/localidades/0602801008
+
+### Búsqueda por nombre existente
+GET http://localhost:3000/localidades/buscar?nombre=Malvinas%20Argentinas
+
+### ID inexistente (esperado: 404)
+GET http://localhost:3000/localidades/no-existe
+
+### Nombre inexistente (esperado: 404)
+GET http://localhost:3000/localidades/buscar?nombre=NombreInventado
+
+### Falta el parámetro nombre (esperado: 400)
+GET http://localhost:3000/localidades/buscar

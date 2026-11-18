@@ -1,36 +1,29 @@
 # TP Express — API REST de localidades
 
-API de consulta de localidades de la Provincia de Buenos Aires, basada en el archivo `cities.json` de `04-practica` del repositorio de clase.
+API para consultar localidades de la Provincia de Buenos Aires usando Express y el archivo `cities.json` de la cursada.
 
-## Requisitos
+## Cómo ejecutarla
 
-- Node.js 18 o superior.
-- Conexión a internet para instalar Express.
-
-## Instalación y ejecución
-
-Desde esta carpeta:
+Se necesita Node.js 18 o superior. Desde esta carpeta, abrir una terminal y ejecutar:
 
 ```bash
 npm install
 npm start
 ```
 
-El servidor escucha en `http://localhost:3000`.
+El servidor queda disponible en `http://localhost:3000`. Para detenerlo, usar `Control + C` en la terminal.
 
-## Endpoints
+## Cómo probarla
 
-- `GET /` — documentación breve de la API y de sus endpoints.
-- `GET /localidades` — devuelve el arreglo completo.
-- `GET /localidades/:id` — busca por ID. Ejemplo: `/localidades/0602801008`.
-- `GET /localidades/buscar?nombre=La%20Plata` — busca por nombre exacto, sin distinguir mayúsculas. La propiedad `data` devuelve un arreglo porque el conjunto de datos puede contener más de una coincidencia.
+Se pueden abrir las direcciones de abajo en el navegador o usar las consultas del archivo `api.http` con la extensión REST Client de VS Code.
 
-Todas las respuestas tienen las propiedades `status`, `message` y `data`; los estados HTTP distinguen los resultados correctos, los parámetros faltantes y los recursos inexistentes.
+- `GET /` — explica cómo usar la API.
+- `GET /localidades` — devuelve las 944 localidades del archivo.
+- `GET /localidades/0602801008` — busca una localidad por ID.
+- `GET /localidades/buscar?nombre=Malvinas%20Argentinas` — busca por nombre.
+- `GET /localidades/no-existe` — devuelve 404 si el ID no existe.
+- `GET /localidades/buscar` — devuelve 400 si falta el parámetro `nombre`.
 
-## Notas de implementación
+Las respuestas usan JSON con `status`, `message` y `data`. La búsqueda por nombre no distingue mayúsculas y devuelve las coincidencias encontradas.
 
-- El archivo se carga con `readFileSync` desde `node:fs` y luego se convierte con `JSON.parse`.
-- Las respuestas se generan con `res.status(...).json(...)`.
-- La ruta `/localidades/buscar` se declara antes de `/localidades/:id` para evitar que `buscar` se interprete como un ID.
-
-Fuente de datos de la cursada: [GUAMINI-BE-UNTREF](https://github.com/marcelobettini/GUAMINI-BE-UNTREF), carpeta `04-practica`.
+El archivo `cities.json` está dentro de `src/data`. No hace falta enviar `node_modules`: se genera al ejecutar `npm install`.
