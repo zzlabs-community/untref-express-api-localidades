@@ -1,29 +1,25 @@
-# TP Express — API REST de localidades
+# TP de Express: localidades
 
-API para consultar localidades de la Provincia de Buenos Aires usando Express y el archivo `cities.json` de la cursada.
+Este trabajo es una API para consultar localidades de la Provincia de Buenos Aires. La información se lee del archivo `cities.json`.
 
-## Cómo ejecutarla
+## Cómo probarlo
 
-Se necesita Node.js 18 o superior. Desde esta carpeta, abrir una terminal y ejecutar:
+Desde esta carpeta, abrir una terminal y ejecutar:
 
 ```bash
 npm install
 npm start
 ```
 
-El servidor queda disponible en `http://localhost:3000`. Para detenerlo, usar `Control + C` en la terminal.
+Después se puede entrar a `http://localhost:3000/` para ver las rutas disponibles. El archivo `api.http` también tiene ejemplos para probarlas desde VS Code con REST Client.
 
-## Cómo probarla
+## Rutas
 
-Se pueden abrir las direcciones de abajo en el navegador o usar las consultas del archivo `api.http` con la extensión REST Client de VS Code.
+- `GET /` muestra cómo usar la API.
+- `GET /localidades` devuelve todas las localidades.
+- `GET /localidades/:id` busca una localidad por su ID.
+- `GET /localidades/buscar?nombre=La%20Plata` busca por nombre.
 
-- `GET /` — explica cómo usar la API.
-- `GET /localidades` — devuelve las 944 localidades del archivo.
-- `GET /localidades/0602801008` — busca una localidad por ID.
-- `GET /localidades/buscar?nombre=Malvinas%20Argentinas` — busca por nombre.
-- `GET /localidades/no-existe` — devuelve 404 si el ID no existe.
-- `GET /localidades/buscar` — devuelve 400 si falta el parámetro `nombre`.
+Las respuestas son JSON. Si no encuentra una localidad, responde 404. Si falta el nombre en la búsqueda, responde 400.
 
-Las respuestas usan JSON con `status`, `message` y `data`. La búsqueda por nombre no distingue mayúsculas y devuelve las coincidencias encontradas.
-
-El archivo `cities.json` está dentro de `src/data`. No hace falta enviar `node_modules`: se genera al ejecutar `npm install`.
+Para detener el servidor, usar `Control + C` en la terminal.
